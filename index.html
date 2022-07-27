@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href={{ url_for('static', filename='style.css')}} />
+
+</head>
+
+<body>
+    <div class="text">
+    <h1> Movie Explorer</h1>
+    </div>
+    <div class="text">
+     <p><b> {{title}}</b></p>   
+    </div>
+    <div class="text">
+      <p><b>{{tagline}}</b></p>  
+    </div>
+    <div class="text">
+    <p><b>{{genres}}</b></p> 
+    </div>
+      <img src={{images}}>
+      <div class="link" id = "link">
+      <a href={{movie_wiki_link}}>Wiki Link</a>
+      <a href="/logout">Logout</a>
+      <form method = "POST" action="/index">
+         <label for="movieid">Movie ID:</label>
+         <input type = "text" name = "movieid" placeholder="{{movieid}}">
+         <label for="Comment">Comment:</label>
+          <input type = "text" name = "comment">
+          <label for="Rating">Rating out of 5:</label>
+          <input type = "text" name = "rating">
+          <input type = "submit" value = "Submit">
+        </form>
+        {% for i in range(num_movies)%}
+          {% if movie_comm_ratings[i].movieid == movieid %}
+            <p><b>{{movie_comm_ratings[i].userid}}</b></p>
+            <p><b>Rating: {{movie_comm_ratings[i].rating}}/5</b></p>
+            <p>{{movie_comm_ratings[i].comment}}</p>
+          {%endif%}
+        {% endfor %}  
+      </div>
+        
+
+</body>
+
+</html>
